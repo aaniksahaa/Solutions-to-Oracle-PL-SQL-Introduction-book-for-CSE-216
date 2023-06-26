@@ -304,6 +304,30 @@ FROM EMPLOYEES
 GROUP BY DEPARTMENT_ID
 HAVING AVG(SALARY) <= 50000 AND DEPARTMENT_ID IS NOT NULL
 ```
+
+# Practice 4.2
+> a. Find number of employees in each salary group. Salary groups are considered as follows. 
+Group 1: 0k to <5K, Group 2: 5k to <10k, Group 3: 10k to <15k, and so on.<br>
+> b. Find the number of employees that were hired in each year in each job type. Print year, job id, 
+and total employees hired.<br>
+
+a. Find number of employees in each salary group. Salary groups are considered as follows. 
+Group 1: 0k to <5K, Group 2: 5k to <10k, Group 3: 10k to <15k, and so on.<br>
+```sql
+SELECT TRUNC(SALARY/5000,0) + 1 SALARY_GROUP, COUNT(*)
+FROM EMPLOYEES
+GROUP BY TRUNC(SALARY/5000,0)
+ORDER BY SALARY_GROUP;
+```
+b. Find the number of employees that were hired in each year in each job type. Print year, job id, 
+and total employees hired.<br>
+```sql
+SELECT TO_CHAR(HIRE_DATE, 'YYYY') YEAR, JOB_ID, COUNT(*)
+FROM EMPLOYEES
+GROUP BY TO_CHAR(HIRE_DATE, 'YYYY'), JOB_ID
+ORDER BY YEAR, JOB_ID;
+```
+
 # Chapter 5
 
 # Practice 5.1
