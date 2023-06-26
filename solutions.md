@@ -156,7 +156,7 @@ a. Print the first three characters and last three characters of all country nam
 SELECT UPPER(SUBSTR(COUNTRY_NAME,1,3)) AS FIRST3, UPPER(SUBSTR(COUNTRY_NAME,LENGTH(COUNTRY_NAME)-2,3))
 FROM COUNTRIES
 ```
-b. Print all employee full names (first name followed by a space then followed by last name).<br>
+b. Print all employee full names (first name followed by a space then followed by last name).
 All names should be printed in width of 60 characters and left padded with '*' symbol for 
 names less than 60 characters<br>
 ```sql
@@ -170,3 +170,22 @@ FROM JOBS
 WHERE INSTR(UPPER(JOB_TITLE),'MANAGER') > 0
 ```
 
+# Practice 3.2
+
+> a. Print employee last name and number of days employed. Print the second information 
+rounded up to 2 decimal places.<br>
+> b. Print employee last name and number of years employed. Print the second information 
+truncated up to 3 decimal place.<br>
+
+a. Print employee last name and number of days employed. Print the second information 
+rounded up to 2 decimal places.<br>
+```sql
+SELECT LAST_NAME, ROUND((TO_DATE(SYSDATE) - HIRE_DATE),2) AS "DAYS EMPLOYED"
+FROM EMPLOYEES
+```
+b. Print employee last name and number of years employed. Print the second information 
+truncated up to 3 decimal place.<br>
+```sql
+SELECT LAST_NAME, TRUNC((TO_DATE(SYSDATE) - HIRE_DATE)/365,3) AS "YEARS EMPLOYED"
+FROM EMPLOYEES
+```
