@@ -304,8 +304,116 @@ FROM EMPLOYEES
 GROUP BY DEPARTMENT_ID
 HAVING AVG(SALARY) <= 50000 AND DEPARTMENT_ID IS NOT NULL
 ```
+# Chapter 5
 
+# Practice 5.1
 
+> a. For each employee print last name, salary, and job title.<br>
+> b. For each department, print department name and country name it is situated in.<br>
+> c. For each country, finds total number of departments situated in the country.<br>
+> d. For each employee, finds the number of job switches of the employee.<br>
+> e. For each department and job types, find the total number of employees working. Print 
+department names, job titles, and total employees working.<br>
+> f. For each employee, finds the total number of employees those were hired before him/her. 
+Print employee last name and total employees.<br>
+> g. For each employee, finds the total number of employees those were hired before him/her and 
+those were hired after him/her. Print employee last name, total employees hired before him, 
+and total employees hired after him.<br>
+> h. Find the employees having salaries greater than at least three other employees.<br> 
+> i. For each employee, find his rank, i.e., position with respect to salary. The highest salaried 
+employee should get rank 1 and lowest salaried employee should get the last rank. Employees 
+with same salary should get same rank value. Print employee last names and his/he rank.<br>
+> j. Finds the names of employees and their salaries for the top three highest salaried employees. 
+The number of employees in your output should be more than three if there are employees 
+with same salary.<br>
+
+a. For each employee print last name, salary, and job title.<br>
+```sql
+SELECT E.LAST_NAME, E.SALARY, J.JOB_TITLE
+FROM EMPLOYEES E JOIN JOBS J
+ON (E.JOB_ID = J.JOB_ID);
+```
+b. For each department, print department name and country name it is situated in.<br>
+```sql
+SELECT D.DEPARTMENT_NAME, C.COUNTRY_NAME
+FROM DEPARTMENTS D JOIN LOCATIONS L 
+ON (D.LOCATION_ID = L.LOCATION_ID)
+JOIN COUNTRIES C
+ON (L.COUNTRY_ID = C.COUNTRY_ID);
+```
+c. For each country, finds total number of departments situated in the country.<br>
+```sql
+SELECT C.COUNTRY_NAME, COUNT(*)
+FROM DEPARTMENTS D JOIN LOCATIONS L
+ON (D.LOCATION_ID = L.LOCATION_ID)
+JOIN COUNTRIES C
+ON (L.COUNTRY_ID = C.COUNTRY_ID)
+GROUP BY C.COUNTRY_ID, C.COUNTRY_NAME;
+```
+d. For each employee, finds the number of job switches of the employee.<br>
+```sql
+SELECT E.EMPLOYEE_ID, E.LAST_NAME, COUNT(*) JOB_SWITCHES 
+FROM EMPLOYEES E JOIN JOB_HISTORY J 
+ON (E.EMPLOYEE_ID = J.EMPLOYEE_ID)
+GROUP BY E.EMPLOYEE_ID, E.LAST_NAME;
+```
+e. For each department and job types, find the total number of employees working. Print 
+department names, job titles, and total employees working.<br>
+```sql
+SELECT D.DEPARTMENT_NAME, J.JOB_TITLE, COUNT(*)
+FROM EMPLOYEES E JOIN DEPARTMENTS D
+ON (E.DEPARTMENT_ID = D.DEPARTMENT_ID)
+JOIN JOBS J 
+ON (E.JOB_ID = J.JOB_ID)
+GROUP BY D.DEPARTMENT_ID, J.JOB_ID, D.DEPARTMENT_NAME, J.JOB_TITLE;
+```
+f. For each employee, finds the total number of employees those were hired before him/her. 
+Print employee last name and total employees.<br>
+```sql
+SELECT E1.LAST_NAME, COUNT(*) HIREDAFTER
+FROM EMPLOYEES E1 JOIN EMPLOYEES E2 
+ON (E1.HIRE_DATE > E2.HIRE_DATE)
+GROUP BY E1.EMPLOYEE_ID, E1.LAST_NAME;
+```
+g. For each employee, finds the total number of employees those were hired before him/her and 
+those were hired after him/her. Print employee last name, total employees hired before him, 
+and total employees hired after him.<br>
+```sql
+SELECT E1.LAST_NAME, COUNT(DISTINCT E2.EMPLOYEE_ID) HIREDAFTER, COUNT(DISTINCT E3.EMPLOYEE_ID) HIREDBEFORE
+FROM EMPLOYEES E1, EMPLOYEES E2, EMPLOYEES E3
+WHERE E1.HIRE_DATE > E2.HIRE_DATE
+AND   E1.HIRE_DATE < E3.HIRE_DATE
+GROUP BY E1.EMPLOYEE_ID, E1.LAST_NAME;
+```
+h. Find the employees having salaries greater than at least three other employees.<br> 
+```sql
+SELECT E1.LAST_NAME
+FROM EMPLOYEES E1, EMPLOYEES E2 
+WHERE E1.SALARY > E2.SALARY
+GROUP BY E1.EMPLOYEE_ID, E1.LAST_NAME
+HAVING COUNT(E2.EMPLOYEE_ID) >= 3;
+```
+i. For each employee, find his rank, i.e., position with respect to salary. The highest salaried 
+employee should get rank 1 and lowest salaried employee should get the last rank. Employees 
+with same salary should get same rank value. Print employee last names and his/he rank.<br>
+```sql
+SELECT E1.LAST_NAME, E1.SALARY, COUNT(DISTINCT E2.SALARY)+1 RANK 
+FROM EMPLOYEES E1 LEFT OUTER JOIN EMPLOYEES E2 
+ON (E1.SALARY < E2.SALARY)
+GROUP BY E1.EMPLOYEE_ID, E1.LAST_NAME, E1.SALARY
+ORDER BY RANK;
+```
+j. Finds the names of employees and their salaries for the top three highest salaried employees. 
+The number of employees in your output should be more than three if there are employees 
+with same salary.<br>
+```sql
+SELECT E1.LAST_NAME, E1.SALARY
+FROM EMPLOYEES E1 LEFT OUTER JOIN EMPLOYEES E2 
+ON (E1.SALARY < E2.SALARY)
+GROUP BY E1.EMPLOYEE_ID, E1.LAST_NAME, E1.SALARY
+HAVING COUNT(DISTINCT E2.SALARY) <=2
+ORDER BY E1.SALARY DESC;
+```
 
 
 
