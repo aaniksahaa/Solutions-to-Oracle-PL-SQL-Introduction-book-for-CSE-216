@@ -453,7 +453,7 @@ of SALES department.<br>
 average salary of SALES department.<br>
 
 a. Find the last names of all employees that work in the SALES department.<br> 
-
+```sql
 SELECT LAST_NAME
 FROM EMPLOYEES
 WHERE DEPARTMENT_ID = 
@@ -462,10 +462,10 @@ WHERE DEPARTMENT_ID =
 	FROM DEPARTMENTS
 	WHERE DEPARTMENT_NAME = 'Sales'
 );
-
+```
 b. Find the last names and salaries of those employees who get higher salary than at least one 
 employee of SALES department.<br>
-
+```sql
 SELECT LAST_NAME, SALARY
 FROM EMPLOYEES
 WHERE SALARY > ANY 
@@ -479,10 +479,10 @@ WHERE SALARY > ANY
 		WHERE DEPARTMENT_NAME = 'Sales'
 	)
 );
-
+```
 c. Find the last names and salaries of those employees whose salary is higher than all employees 
 of SALES department.<br>
-
+```sql
 SELECT LAST_NAME, SALARY
 FROM EMPLOYEES
 WHERE SALARY > ALL 
@@ -496,10 +496,10 @@ WHERE SALARY > ALL
 		WHERE DEPARTMENT_NAME = 'Sales'
 	)
 );
-
+```
 d. Find the last names and salaries of those employees whose salary is within ± 5k of the 
 average salary of SALES department.<br>
-
+```sql
 SELECT LAST_NAME, SALARY
 FROM EMPLOYEES
 WHERE ABS(SALARY - 
@@ -513,7 +513,7 @@ WHERE ABS(SALARY -
 		WHERE DEPARTMENT_NAME = 'Sales'
 	)
 )) <= 5000;
-
+```
 
 
 
