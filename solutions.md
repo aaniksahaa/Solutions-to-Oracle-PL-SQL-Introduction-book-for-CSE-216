@@ -58,11 +58,14 @@ a. Select names of all employees who have joined before January 01, 1998.<br>
 ```sql
 SELECT (FIRST_NAME || ' ' || LAST_NAME) NAME, TO_CHAR(HIRE_DATE,'DD-MON-YYYY') HIRE_DATE
 FROM EMPLOYEES
-WHERE HIRE_DATE < '01-JAN-2007'
+WHERE HIRE_DATE < '01-JAN-2007';
 ```
 b. Select all locations in the following countries: Canada, Germany, United Kingdom.<br>
-
-
+```sql
+SELECT *
+FROM LOCATIONS
+WHERE COUNTRY_ID IN ('CA','DE','UK');
+```
 c. Select first names of all employees who do not get any commission.<br>
 ```sql
 SELECT FIRST_NAME
@@ -73,49 +76,49 @@ d. Select first names of employees whose last name starts with an 'a'.<br>
 ```sql
 SELECT FIRST_NAME 
 FROM EMPLOYEES 
-WHERE LOWER(LAST_NAME) LIKE 'a%'
+WHERE LOWER(LAST_NAME) LIKE 'a%';
 ```
 e. Select first names of employees whose last name starts with an 's' and ends with an 'n'.<br>
 ```sql
 SELECT FIRST_NAME
 FROM EMPLOYEES 
-WHERE LOWER(LAST_NAME) LIKE 's%n'
+WHERE LOWER(LAST_NAME) LIKE 's%n';
 ```
 f. Select all department names whose MANAGER_ID is 100.<br>
 ```sql
 SELECT DISTINCT DEPARTMENT_ID
 FROM EMPLOYEES
-WHERE MANAGER_ID = 100
+WHERE MANAGER_ID = 100;
 ```
 g. Select all names of employees whose job type is 'AD_PRES' and whose salary is at least 23000.<br>
 ```sql
 SELECT (FIRST_NAME || ' ' || LAST_NAME) NAME
 FROM EMPLOYEES 
-WHERE JOB_ID = 'AD_PRES' AND SALARY >= 23000
+WHERE JOB_ID = 'AD_PRES' AND SALARY >= 23000;
 ```
 h. Select names of all employees whose last name do not contain the character 's'.<br>
 ```sql
 SELECT (FIRST_NAME || ' ' || LAST_NAME) NAME
 FROM EMPLOYEES 
-WHERE LOWER(LAST_NAME) NOT LIKE '%s%'
+WHERE LOWER(LAST_NAME) NOT LIKE '%s%';
 ```
 i. Select names and COMMISSION_PCT of all employees whose commission is at most 0.30.<br>
 ```sql
 SELECT FIRST_NAME, LAST_NAME, COMMISSION_PCT 
 FROM EMPLOYEES 
-WHERE COMMISSION_PCT <= 0.30
+WHERE COMMISSION_PCT <= 0.30;
 ```
 j. Select names of all employees who have joined after January 01, 1998.<br>
 ```sql
 SELECT FIRST_NAME, LAST_NAME 
 FROM EMPLOYEES 
-WHERE HIRE_DATE > '01-JAN-1998'
+WHERE HIRE_DATE > '01-JAN-1998';
 ```
 k. Select names of all employees who have joined in the year 1998.<br>
 ```sql
 SELECT FIRST_NAME, LAST_NAME, HIRE_DATE 
 FROM EMPLOYEES 
-WHERE TO_CHAR(HIRE_DATE, 'YYYY') = '1998'
+WHERE TO_CHAR(HIRE_DATE, 'YYYY') = '1998';
 ```
 
 # Practice 2.3
@@ -135,5 +138,5 @@ b. Retrieve all country names in lexicographical ascending order.<br>
 ```sql
 SELECT COUNTRY_NAME
 FROM COUNTRIES
-ORDER BY COUNTRY_NAME
+ORDER BY COUNTRY_NAME;
 ```
