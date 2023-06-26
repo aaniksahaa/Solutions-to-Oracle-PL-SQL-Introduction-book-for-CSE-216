@@ -277,7 +277,7 @@ DEPARTMENT_ID and total number of such employees.<br>
 SELECT DEPARTMENT_ID, COUNT(*)
 FROM EMPLOYEES
 WHERE SALARY > 10000
-GROUP BY DEPARTMENT_ID
+GROUP BY DEPARTMENT_ID;
 ```
 c. Find the minimum, maximum, and average salary of all departments except 
 DEPARTMENT_ID 80. Print DEPARTMENT_ID, minimum, maximum, and average salary. <br>
@@ -288,9 +288,22 @@ SELECT DEPARTMENT_ID, MIN(SALARY) MIN_SALARY, MAX(SALARY) MAX_SALARY, ROUND(AVG(
 FROM EMPLOYEES
 WHERE DEPARTMENT_ID <> 80 AND DEPARTMENT_ID IS NOT NULL 
 GROUP BY DEPARTMENT_ID
-ORDER BY AVG_SALARY DESC, MAX_SALARY DESC, MIN_SALARY DESC
+ORDER BY AVG_SALARY DESC, MAX_SALARY DESC, MIN_SALARY DESC;
 ```
 
+# Practice 4.2
+
+> a. Find for each department, the average salary of the department. Print only those 
+DEPARTMENT_ID and average salary whose average salary is at most 50k.<br>
+
+a. Find for each department, the average salary of the department. Print only those 
+DEPARTMENT_ID and average salary whose average salary is at most 50k.<br>
+```sql
+SELECT DEPARTMENT_ID, ROUND(AVG(SALARY),2)
+FROM EMPLOYEES
+GROUP BY DEPARTMENT_ID
+HAVING AVG(SALARY) <= 50000 AND DEPARTMENT_ID IS NOT NULL
+```
 
 
 
