@@ -118,3 +118,7 @@ FROM EMPLOYEES
 WHERE TO_CHAR(HIRE_DATE, 'YYYY') = '1998'
 ```
 
+# Practice 2.3
+> a. Select names, salary, and commissions of all employees of job type 'AD_PRES'. Sort the
+>    result in ascending order of commission and then descending order of salary.
+> b. Retrieve all country names in lexicographical ascending order.
