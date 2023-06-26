@@ -189,3 +189,67 @@ truncated up to 3 decimal place.<br>
 SELECT LAST_NAME, TRUNC((TO_DATE(SYSDATE) - HIRE_DATE)/365,3) AS "YEARS EMPLOYED"
 FROM EMPLOYEES
 ```
+
+# Practice 3.3
+
+> a. For all employees, find the number of years employed. Print first names and number of years 
+employed for each employee.<br>
+> b. Suppose you need to find the number of days each employee worked during the first month 
+of his joining. Write an SQL query to find this information for all employees.<br>
+
+a. For all employees, find the number of years employed. Print first names and number of years 
+employed for each employee.<br>
+```sql
+SELECT FIRST_NAME, ROUND((TO_DATE(SYSDATE)-HIRE_DATE)/365,2)
+FROM EMPLOYEES
+```
+b. Suppose you need to find the number of days each employee worked during the first month 
+of his joining. Write an SQL query to find this information for all employees.<br>
+```sql
+SELECT FIRST_NAME, LAST_NAME, HIRE_DATE, ADD_MONTHS(TRUNC(HIRE_DATE, 'MONTH'),1) - HIRE_DATE AS "FIRST MONTH WORKED"
+FROM EMPLOYEES
+```
+
+# Practice 3.4
+
+> a. Print the commission_pct values of all employees whose commission is at least 20%. Use 
+NVL function.<br>
+> b. Print the total salary of an employee for 5 years and 6 months period. Print all employee last 
+names along with this salary information. Use NVL function assuming that salary may 
+contain NULL values.<br>
+
+
+a. Print the commission_pct values of all employees whose commission is at least 20%. Use 
+NVL function.<br>
+```sql
+SELECT FIRST_NAME, LAST_NAME, COMMISSION_PCT
+FROM EMPLOYEES
+WHERE NVL(COMMISSION_PCT,0) >= 0.2
+```
+b. Print the total salary of an employee for 5 years and 6 months period. Print all employee last 
+names along with this salary information. Use NVL function assuming that salary may 
+contain NULL values.<br>
+```sql
+SELECT LAST_NAME, NVL(SALARY,0)*66*(1+NVL(COMMISSION_PCT,0)) SAL
+FROM EMPLOYEES
+```
+# Practice 3.5
+
+> a. Print hire dates of all employees in the following formats: <br>
+(i) 13th February, 1998 (ii) 13 February, 1998.<br>
+
+a.(i) 
+```sql
+SELECT FIRST_NAME, LAST_NAME, TO_CHAR(HIRE_DATE,'ddth Month, YYYY')
+FROM EMPLOYEES;
+```
+
+a.(ii)
+```sql
+SELECT FIRST_NAME, LAST_NAME, TO_CHAR(HIRE_DATE,'dd Month, YYYY')
+FROM EMPLOYEES;
+```
+
+
+
+
