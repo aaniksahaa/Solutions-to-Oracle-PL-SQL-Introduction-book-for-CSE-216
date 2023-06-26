@@ -250,6 +250,49 @@ SELECT FIRST_NAME, LAST_NAME, TO_CHAR(HIRE_DATE,'dd Month, YYYY')
 FROM EMPLOYEES;
 ```
 
+# Practice 4.1
+
+> a. For all managers, find the number of employees he/she manages.
+> Print the MANAGER_ID and total number of such employees.<br>
+> b. For all departments, find the number of employees who get more than 30k salary. Print the 
+DEPARTMENT_ID and total number of such employees.<br>
+> c. Find the minimum, maximum, and average salary of all departments except 
+DEPARTMENT_ID 80. Print DEPARTMENT_ID, minimum, maximum, and average salary. <br>
+Sort the results in descending order of average salary first, then maximum salary, then 
+minimum salary. Use column alias to rename column names in output for better display.<br>
+
+
+a. For all managers, find the number of employees he/she manages.
+Print the MANAGER_ID and total number of such employees.<br>
+```sql
+SELECT MANAGER_ID, COUNT(*)
+FROM EMPLOYEES
+WHERE MANAGER_ID IS NOT NULL
+GROUP BY MANAGER_ID;
+```
+b. For all departments, find the number of employees who get more than 30k salary. Print the 
+DEPARTMENT_ID and total number of such employees.<br>
+```sql
+SELECT DEPARTMENT_ID, COUNT(*)
+FROM EMPLOYEES
+WHERE SALARY > 10000
+GROUP BY DEPARTMENT_ID
+```
+c. Find the minimum, maximum, and average salary of all departments except 
+DEPARTMENT_ID 80. Print DEPARTMENT_ID, minimum, maximum, and average salary. <br>
+Sort the results in descending order of average salary first, then maximum salary, then 
+minimum salary. Use column alias to rename column names in output for better display.<br>
+```sql
+SELECT DEPARTMENT_ID, MIN(SALARY) MIN_SALARY, MAX(SALARY) MAX_SALARY, ROUND(AVG(SALARY),4) AVG_SALARY 
+FROM EMPLOYEES
+WHERE DEPARTMENT_ID <> 80 AND DEPARTMENT_ID IS NOT NULL 
+GROUP BY DEPARTMENT_ID
+ORDER BY AVG_SALARY DESC, MAX_SALARY DESC, MIN_SALARY DESC
+```
+
+
+
+
 
 
 
