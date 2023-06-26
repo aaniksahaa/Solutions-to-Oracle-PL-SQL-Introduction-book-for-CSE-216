@@ -120,5 +120,20 @@ WHERE TO_CHAR(HIRE_DATE, 'YYYY') = '1998'
 
 # Practice 2.3
 > a. Select names, salary, and commissions of all employees of job type 'AD_PRES'. Sort the
->    result in ascending order of commission and then descending order of salary.
-> b. Retrieve all country names in lexicographical ascending order.
+>    result in ascending order of commission and then descending order of salary.<br>
+> b. Retrieve all country names in lexicographical ascending order.<br>
+
+a. Select names, salary, and commissions of all employees of job type 'AD_PRES'. Sort the
+result in ascending order of commission and then descending order of salary.<br>
+```sql
+SELECT FIRST_NAME, LAST_NAME, SALARY, COMMISSION_PCT
+FROM EMPLOYEES
+WHERE JOB_ID = 'AD_PRES'
+ORDER BY COMMISSION_PCT ASC, SALARY DESC;
+```
+b. Retrieve all country names in lexicographical ascending order.<br>
+```sql
+SELECT COUNTRY_NAME
+FROM COUNTRIES
+ORDER BY COUNTRY_NAME
+```
