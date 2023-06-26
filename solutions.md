@@ -140,3 +140,33 @@ SELECT COUNTRY_NAME
 FROM COUNTRIES
 ORDER BY COUNTRY_NAME;
 ```
+
+# Chapter 3
+
+# Practice 3.1
+
+> a. Print the first three characters and last three characters of all country names. Print in capital letters.<br>
+> b. Print all employee full names (first name followed by a space then followed by last name).<br>
+All names should be printed in width of 60 characters and left padded with '*' symbol for 
+names less than 60 characters<br>
+> c. Print all job titles that contain the text 'manager'<br>
+
+a. Print the first three characters and last three characters of all country names. Print in capital letters.<br>
+```sql
+SELECT UPPER(SUBSTR(COUNTRY_NAME,1,3)) AS FIRST3, UPPER(SUBSTR(COUNTRY_NAME,LENGTH(COUNTRY_NAME)-2,3))
+FROM COUNTRIES
+```
+b. Print all employee full names (first name followed by a space then followed by last name).<br>
+All names should be printed in width of 60 characters and left padded with '*' symbol for 
+names less than 60 characters<br>
+```sql
+SELECT LPAD((FIRST_NAME || ' ' || LAST_NAME),60,'*') AS NAME
+FROM EMPLOYEES
+```
+c. Print all job titles that contain the text 'manager'.
+```sql
+SELECT JOB_TITLE
+FROM JOBS 
+WHERE INSTR(UPPER(JOB_TITLE),'MANAGER') > 0
+```
+
