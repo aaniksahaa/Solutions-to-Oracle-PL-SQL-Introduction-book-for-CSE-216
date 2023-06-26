@@ -1,4 +1,4 @@
-# Hi Dear
+# Hi there
 This is a comprehensive solution manual for the book 'A brief Introduction to Oracle SQL/PL-SQL' by Sukarna Barua Sir, CSE, BUET.<br>
 I've tried to include the solution to every practice problem as neatly as possible.<br>
 If you find any significant error, please let me know.<br>
