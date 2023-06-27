@@ -600,8 +600,41 @@ f. For each job type, find the employee who gets the highest salary. Print job t
 of the employee. Assume that there is one and only one such employee for every job type.<br>
 
 
+# Chapter 7
 
+# Practice 7.1
 
+> a. Find EMPLOYEE_ID of those employees who are not managers. Use minus operator to perform this.<br>
+> b. Find last names of those employees who are not managers. Use minus operator to perform this.<br>
+> c. Find the LOCATION_ID of those locations having no departments.<br>
+
+a. Find EMPLOYEE_ID of those employees who are not managers. Use minus operator to perform this.<br>
+```sql
+SELECT EMPLOYEE_ID
+FROM EMPLOYEES
+MINUS
+SELECT MANAGER_ID
+FROM EMPLOYEES;
+```
+b. Find last names of those employees who are not managers. Use minus operator to perform this.<br>
+```sql
+SELECT LAST_NAME
+FROM EMPLOYEES
+WHERE EMPLOYEE_ID IN
+(
+	SELECT EMPLOYEE_ID FROM EMPLOYEES
+	MINUS
+	SELECT MANAGER_ID FROM EMPLOYEES
+);
+```
+c. Find the LOCATION_ID of those locations having no departments.<br>
+```sql
+SELECT LOCATION_ID
+FROM LOCATIONS
+MINUS
+SELECT LOCATION_ID
+FROM DEPARTMENTS;
+```
 
 
 
