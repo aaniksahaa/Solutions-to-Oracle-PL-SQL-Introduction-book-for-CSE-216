@@ -514,6 +514,92 @@ WHERE ABS(SALARY -
 	)
 )) <= 5000;
 ```
+# Practice 6.2
+
+> a. Find those employees whose salary is higher than at least three other employees. Print last 
+names and salary of each employee. You cannot use join in the main query. Use sub-query in 
+WHERE clause only. You can use join in the sub-queries.<br>
+> b. Find those departments whose average salary is greater than the minimum salary of all other 
+departments. Print department names. Use sub-query. You can use join in the sub-queries.<br>
+> c. Find those department names which have the highest number of employees in service. Print 
+department names. Use sub-query. You can use join in the sub-queries.<br>
+> d. Find those employees who worked in more than one department in the company. Print 
+employee last names. You cannot use join in the main query. Use sub-query. You can use join 
+in the sub-queries.<br>
+> e. For each employee, find the minimum and maximum salary of his/her department. Print 
+employee last name, minimum salary, and maximum salary. Do not use sub-query in 
+WHERE clause. Use sub-query in FROM clause.<br>
+> f. For each job type, find the employee who gets the highest salary. Print job title and last name 
+of the employee. Assume that there is one and only one such employee for every job type.<br>
+
+a. Find those employees whose salary is higher than at least three other employees. Print last 
+names and salary of each employee. You cannot use join in the main query. Use sub-query in 
+WHERE clause only. You can use join in the sub-queries.<br>
+```sql
+SELECT LAST_NAME, SALARY
+FROM EMPLOYEES E1
+WHERE 
+(
+	SELECT COUNT(*)
+	FROM EMPLOYEES E2 
+	WHERE E1.SALARY > E2.SALARY
+) >= 3;
+```
+b. Find those departments whose average salary is greater than the minimum salary of all other 
+departments. Print department names. Use sub-query. You can use join in the sub-queries.<br>
+```sql
+SELECT DEPARTMENT_ID, ( SELECT DEPARTMENT_NAME FROM DEPARTMENTS D WHERE E1.DEPARTMENT_ID = D.DEPARTMENT_ID ) DEPARTMENT_NAME , ROUND(AVG(SALARY),4)
+FROM EMPLOYEES E1
+GROUP BY DEPARTMENT_ID
+HAVING AVG(SALARY) > ANY
+(
+	SELECT SALARY
+	FROM EMPLOYEES E2 
+	WHERE E2.DEPARTMENT_ID <> E1.DEPARTMENT_ID
+);
+```
+c. Find those department names which have the highest number of employees in service. Print 
+department names. Use sub-query. You can use join in the sub-queries.<br>
+```sql
+SELECT DEPARTMENT_ID, (SELECT DEPARTMENT_NAME FROM DEPARTMENTS D WHERE E1.DEPARTMENT_ID = D.DEPARTMENT_ID )
+FROM EMPLOYEES E1
+WHERE 
+(
+	SELECT COUNT(*)
+	FROM EMPLOYEES E2
+	WHERE E2.DEPARTMENT_ID = E1.DEPARTMENT_ID
+) = 
+(
+	SELECT MAX(CNT)
+	FROM (SELECT DEPARTMENT_ID, COUNT(*) CNT FROM EMPLOYEES GROUP BY DEPARTMENT_ID) D_COUNT
+)
+GROUP BY E1.DEPARTMENT_ID;
+```
+d. Find those employees who worked in more than one department in the company. Print 
+employee last names. You cannot use join in the main query. Use sub-query. You can use join 
+in the sub-queries.<br>
+```sql
+SELECT EMPLOYEE_ID
+FROM JOB_HISTORY J1
+WHERE 
+(
+	SELECT COUNT(DISTINCT DEPARTMENT_ID)
+	FROM JOB_HISTORY J2
+	WHERE J1.EMPLOYEE_ID = J2.EMPLOYEE_ID
+) > 1;
+```
+e. For each employee, find the minimum and maximum salary of his/her department. Print 
+employee last name, minimum salary, and maximum salary. Do not use sub-query in 
+WHERE clause. Use sub-query in FROM clause.<br>
+```sql
+SELECT E.LAST_NAME, D.MAXSAL, D.MINSAL
+FROM EMPLOYEES E, ( SELECT DEPARTMENT_ID, MAX(SALARY) MAXSAL, MIN(SALARY) MINSAL FROM EMPLOYEES GROUP BY DEPARTMENT_ID ) D
+WHERE E.DEPARTMENT_ID = D.DEPARTMENT_ID;
+```
+f. For each job type, find the employee who gets the highest salary. Print job title and last name 
+of the employee. Assume that there is one and only one such employee for every job type.<br>
+
+
 
 
 
