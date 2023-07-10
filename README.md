@@ -395,9 +395,9 @@ GROUP BY D.DEPARTMENT_ID, J.JOB_ID, D.DEPARTMENT_NAME, J.JOB_TITLE;
 f. For each employee, finds the total number of employees those were hired before him/her. 
 Print employee last name and total employees.<br>
 ```sql
-SELECT E1.LAST_NAME, COUNT(*) HIREDAFTER
-FROM EMPLOYEES E1 JOIN EMPLOYEES E2 
-ON (E1.HIRE_DATE > E2.HIRE_DATE)
+SELECT E1.LAST_NAME, COUNT(E2.EMPLOYEE_ID) HIRED_BEFORE
+FROM EMPLOYEES E1 LEFT OUTER JOIN EMPLOYEES E2 
+ON (E2.HIRE_DATE < E1.HIRE_DATE)
 GROUP BY E1.EMPLOYEE_ID, E1.LAST_NAME;
 ```
 g. For each employee, finds the total number of employees those were hired before him/her and 
