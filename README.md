@@ -404,10 +404,11 @@ g. For each employee, finds the total number of employees those were hired befor
 those were hired after him/her. Print employee last name, total employees hired before him, 
 and total employees hired after him.<br>
 ```sql
-SELECT E1.LAST_NAME, COUNT(DISTINCT E2.EMPLOYEE_ID) HIREDAFTER, COUNT(DISTINCT E3.EMPLOYEE_ID) HIREDBEFORE
-FROM EMPLOYEES E1, EMPLOYEES E2, EMPLOYEES E3
-WHERE E1.HIRE_DATE > E2.HIRE_DATE
-AND   E1.HIRE_DATE < E3.HIRE_DATE
+SELECT E1.LAST_NAME, COUNT(DISTINCT E2.EMPLOYEE_ID) HIRED_BEFORE, COUNT(DISTINCT E3.EMPLOYEE_ID) HIRED_AFTER
+FROM EMPLOYEES E1 LEFT OUTER JOIN EMPLOYEES E2
+ON (E2.HIRE_DATE < E1.HIRE_DATE)
+LEFT OUTER JOIN EMPLOYEES E3
+ON (E3.HIRE_DATE > E1.HIRE_DATE)
 GROUP BY E1.EMPLOYEE_ID, E1.LAST_NAME;
 ```
 h. Find the employees having salaries greater than at least three other employees.<br> 
