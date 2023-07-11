@@ -1,5 +1,5 @@
-## Solution Manual for 'Introduction to Oracle PL-SQL'
-Please do care to star the repository if you find it helpful :D
+## Solution Manual for 'Oracle PL-SQL-A Brief Introduction'
+These are my solutions to the exercise problems provided in the aforementioned book. Please do care to star the repository if you find it helpful :D
 # Chapter 1
 > No Practice Problems in this chapter...Cheers!<br>
 # Chapter 2
