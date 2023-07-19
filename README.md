@@ -1,5 +1,8 @@
 ## Solution Manual for 'Oracle-PL-SQL-A Brief Introduction'
-First off, tribute to the original author of the book, Prof. Sukarna Barua Sir for such an amazing documentation. These are my solutions to the exercise problems provided in the aforementioned book. Please do care to star the repository if you find it helpful :D
+
+First off, tribute to the original author of the book, Prof. Sukarna Barua Sir for such an amazing documentation.
+
+These are my solutions to the exercise problems provided in the aforementioned book. Please do care to star the repository if you find it helpful :D
 
 # Chapter 1
 > No Practice Problems in this chapter...Cheers!<br>
