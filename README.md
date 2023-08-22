@@ -1,5 +1,11 @@
 ## Solution Manual for 'Oracle-PL-SQL-A Brief Introduction'
 
+# Introduction
+
+First of all, my earnest tribute to the original author of the book, **Prof. Sukarna Barua Sir** for such an amazing documentation with abundant exercises and practice problems.
+
+These are my solutions to the exercise problems provided in the aforementioned book. **Please do care to star the repository if you find it helpful** :D
+
 # Contents   
 
 ## [Chapter 1](#chapter-1-1)
@@ -10,12 +16,10 @@
 ## [Chapter 6](#chapter-6-1)
 ## [Chapter 7](#chapter-7-1)
 
-First off, tribute to the original author of the book, Prof. Sukarna Barua Sir for such an amazing documentation.
+# Chapter 1   
 
-These are my solutions to the exercise problems provided in the aforementioned book. Please do care to star the repository if you find it helpful :D
+> No Practice Problems in this chapter...Cheers!<br>   
 
-# Chapter 1
-> No Practice Problems in this chapter...Cheers!<br>
 # Chapter 2
 
 # Practice 2.1
