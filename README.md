@@ -2,8 +2,12 @@
 
 # Contents   
 
-## [Chapter 3](#chapter-3)
-
+## [Chapter 1](#chapter-1-1)
+## [Chapter 2](#chapter-2-1)
+## [Chapter 3](#chapter-3-1)
+## [Chapter 4](#chapter-4-1)
+## [Chapter 5](#chapter-5-1)
+## [Chapter 6](#chapter-6-1)
 
 First off, tribute to the original author of the book, Prof. Sukarna Barua Sir for such an amazing documentation.
 
