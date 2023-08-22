@@ -690,3 +690,135 @@ BEGIN
 END;
 /
 ```
+# Practice 11.2
+
+>a. Extend the above block by handing the following exception: TOO_MANY_ROWS.
+>   Print an appropriate message when such an exception occurs.<br>
+>b. Write an example PL/SQL block that inserts a new arbitrary row to the COUNTRIES table.
+>   The block should handle the exception DUP_VAL_ON_INDEX and OTHERS.
+>   Run the block for different COUNTRY_ID and observe the cases when above exception occurs.
+
+a. Extend the above block by handing the following exception: TOO_MANY_ROWS. Print an appropriate message when such an exception occurs.<br>
+```sql
+DECLARE
+
+ JDATE DATE ;
+ YEARS NUMBER ;
+ 
+BEGIN
+
+ SELECT HIRE_DATE INTO JDATE
+ FROM EMPLOYEES
+ WHERE EMPLOYEE_ID > 101 ;
+ 
+ YEARS := (MONTHS_BETWEEN(SYSDATE, JDATE) / 12) ;
+ 
+ IF YEARS >= 10 THEN 
+ 
+	DBMS_OUTPUT.PUT_LINE('The employee worked 10 years or more') ;
+	
+ ELSE
+ 
+	DBMS_OUTPUT.PUT_LINE('The employee worked less than 10 years') ;
+	
+ END IF ;
+ 
+EXCEPTION
+
+	WHEN NO_DATA_FOUND THEN
+	
+		DBMS_OUTPUT.PUT_LINE('data nai') ;
+	
+	WHEN TOO_MANY_ROWS THEN
+	
+		DBMS_OUTPUT.PUT_LINE('Onek row select korsen Sorry') ;
+	
+	WHEN OTHERS THEN
+	
+		DBMS_OUTPUT.PUT_LINE('Kijani bhai ki hoise!') ;
+	
+END ;
+/
+```
+b. Write an example PL/SQL block that inserts a new arbitrary row to the COUNTRIES table.  The block should handle the exception DUP_VAL_ON_INDEX and OTHERS. Run the block for different COUNTRY_ID and observe the cases when above exception occurs.
+```sql
+DECLARE 
+	
+	
+	
+BEGIN 
+	
+	INSERT INTO COUNTRIES(COUNTRY_ID,COUNTRY_NAME,REGION_ID)
+	VALUES('AR','Argentina_Best',2);
+	
+EXCEPTION 
+
+	WHEN DUP_VAL_ON_INDEX THEN
+
+		DBMS_OUTPUT.PUT_LINE('Sorry, Duplicate values cannot be stored in Unique declared columns');
+				
+	WHEN OTHERS THEN
+
+		DBMS_OUTPUT.PUT_LINE('Unknown Error occurred');
+	
+END;
+/
+```
+# Practice on Functions ( Page - 102 )
+
+>a. In Oracle, there is a function TO_NUMBER that converts a VARCHAR2 value to a numeric value.
+>   If the input to this function is not a valid number, then this function throws an exception.
+>   This is a problem in a SQL query because the whole query would not produce any result
+>   if one row generates an exception. So, your job is to write a PL/SQL function ISNUMBER that
+>   receives an input VARCHAR2 value and checks whether the input can be converted to a valid number.
+>   If the input can be converted to a valid number than ISNUMBER should return ‘YES’,
+>   otherwise ISNUMBER should return ‘NO’.<br>
+
+a. In Oracle, there is a function TO_NUMBER that converts a VARCHAR2 value to a numeric value. If the input to this function is not a valid number, then this function throws an exception. This is a problem in a SQL query because the whole query would not produce any result if one row generates an exception. So, your job is to write a PL/SQL function ISNUMBER that receives an input VARCHAR2 value and checks whether the input can be converted to a valid number. If the input can be converted to a valid number than ISNUMBER should return ‘YES’, otherwise ISNUMBER should return ‘NO’.<br>
+```sql
+CREATE OR REPLACE FUNCTION ISNUMBER(STR IN VARCHAR2)
+RETURN VARCHAR2 IS
+	
+	DUMMY NUMBER;
+	MSG VARCHAR2(100);
+	
+BEGIN 
+	
+	DUMMY := TO_NUMBER(STR);
+	MSG := 'YES';
+	RETURN MSG;
+	
+EXCEPTION 
+	
+	WHEN INVALID_NUMBER THEN
+	
+		MSG := 'NO';
+		RETURN MSG;
+		
+	WHEN VALUE_ERROR THEN
+	
+		MSG := 'NO';
+		RETURN MSG;
+		
+	WHEN OTHERS THEN
+	
+		MSG := 'Unknown Error Occured';
+		RETURN MSG;
+	
+END;
+/
+
+DECLARE 
+	
+	MESSAGE VARCHAR2(100);
+	
+BEGIN 
+	
+	MESSAGE := ISNUMBER('23b4');
+	DBMS_OUTPUT.PUT_LINE(MESSAGE);
+	MESSAGE := ISNUMBER('234');
+	DBMS_OUTPUT.PUT_LINE(MESSAGE);
+	
+END;
+/
+```
