@@ -2,7 +2,7 @@
 
 # Introduction
 
-First of all, my earnest tribute to the original author of the book, **Prof. Sukarna Barua Sir** for such an amazing documentation with abundant exercises and practice problems.
+First of all, my earnest tribute to the author of the book, **Prof. Sukarna Barua Sir** for such an amazing documentation with abundant exercises and practice problems.
 
 These are my solutions to the exercise problems provided in the aforementioned book. **Please do care to star the repository if you find it helpful** :D
 
