@@ -8,6 +8,7 @@
 ## [Chapter 4](#chapter-4-1)
 ## [Chapter 5](#chapter-5-1)
 ## [Chapter 6](#chapter-6-1)
+## [Chapter 7](#chapter-7-1)
 
 First off, tribute to the original author of the book, Prof. Sukarna Barua Sir for such an amazing documentation.
 
