@@ -15,6 +15,7 @@ These are my solutions to the exercise problems provided in the aforementioned b
 ## [Chapter 5](#chapter-5-1)
 ## [Chapter 6](#chapter-6-1)
 ## [Chapter 7](#chapter-7-1)
+## [Chapter 11](#chapter-11-1)
 
 # Chapter 1   
 
