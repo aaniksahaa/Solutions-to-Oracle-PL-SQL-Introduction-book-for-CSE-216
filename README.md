@@ -297,7 +297,7 @@ DEPARTMENT_ID and total number of such employees.<br>
 ```sql
 SELECT DEPARTMENT_ID, COUNT(*)
 FROM EMPLOYEES
-WHERE SALARY > 10000
+WHERE SALARY > 30000
 GROUP BY DEPARTMENT_ID;
 ```
 c. Find the minimum, maximum, and average salary of all departments except 
